@@ -6,6 +6,15 @@ authors = ["RezuanDzibov <rezuan.dzbov@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+motor = "^2.5.1"
+flake8 = "^4.0.1"
+flake8-black = "^0.2.4"
+flake8-bugbear = "^22.1.11"
+flake8-builtins = "^1.5.3"
+flake8-variables-names = "^0.0.4"
+flake8-functions-names = "^0.3.0"
+flake8-cognitive-complexity = "^0.1.0"
+flake8-isort = "^4.1.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
