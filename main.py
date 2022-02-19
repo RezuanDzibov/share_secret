@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import FastAPI, Form, HTTPException
 
 from db.config import secrets
@@ -18,6 +20,7 @@ async def create_secret(schema: SecretCreate):
     """
     secret: dict = schema.dict()
     secret["key"] = await hash_secret_key(secret.pop("key"))
+    secret["created"] = datetime.now()
     result = await secrets.insert_one(secret)
     return str(result.inserted_id)
 
