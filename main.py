@@ -9,7 +9,7 @@ from schemas import PyObjectId, SecretCreate, SecretRetrive
 app = FastAPI()
 
 
-@app.post("/secret")
+@app.post("/generate")
 async def create_secret(schema: SecretCreate):
     """
     Create a secret.
