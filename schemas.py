@@ -1,13 +1,11 @@
 from bson import ObjectId
+
 from pydantic import BaseModel, Field
 
 
 class SecretCreate(BaseModel):
     key: str
     text: str
-
-    class Config:
-        allow_mutation = True
 
 
 class PyObjectId(ObjectId):
@@ -26,8 +24,9 @@ class PyObjectId(ObjectId):
         field_schema.update(type="string")
 
 
-class SecretRetrive(SecretCreate):
+class SecretRetrive(BaseModel):
     id_: PyObjectId() = Field(alias="_id")
+    text: str
 
     class Config:
         arbitrary_types_allowed = True
