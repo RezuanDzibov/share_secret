@@ -13,11 +13,11 @@ app = FastAPI(title=get_config().app_name)
 @app.post("/generate")
 async def create_secret(schema: SecretCreate):
     """
-    Create a secret.
-    
-    :param schema: SecretCreate is a parameter that takes in a SecretCreate object
+    Create a secret in database.
+
+    :param schema: SecretCreate is a parameter that take a SecretCreate instance
     :type schema: SecretCreate
-    :return: The ID of the inserted secret.
+    :return: ID of the inserted document.
     """
     secret: dict = schema.dict()
     secret["key"] = await hash_secret_key(secret.pop("key"))
@@ -29,13 +29,13 @@ async def create_secret(schema: SecretCreate):
 @app.post("/secret/{_id}", response_model=SecretRetrive)
 async def get_secret(_id: PyObjectId, key: str = Form(...)):
     """
-    Get secret from the database and check if the secret key is valid.
-    
+    Get a secret by its id. If key is valid the return secret.
+
     :param _id: PyObjectId
     :type _id: PyObjectId
-    :param key: str = Form(...)
+    :param key: Secret key that will be used to decrypt the secret
     :type key: str
-    :return: The secret is being returned.
+    :return: Secret instance.
     """
     secret = await secrets.find_one({"_id": _id})
     if secret is None:
