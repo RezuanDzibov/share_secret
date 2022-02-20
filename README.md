@@ -16,7 +16,7 @@
 DB_PATH = Your MongoDB path
 ```
 
-## And if so, you can clone the repository and run the project with the command:
+## And now you can run the project with the command:
 ```
 docker-compose up --build
 ```
