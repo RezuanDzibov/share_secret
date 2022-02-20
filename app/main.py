@@ -2,11 +2,12 @@ from datetime import datetime
 
 from fastapi import FastAPI, Form, HTTPException
 
-from db.config import secrets
-from db.hash import hash_secret_key, is_valid_secret_key
-from schemas import PyObjectId, SecretCreate, SecretRetrive
+from app.config import get_config
+from app.db.config import secrets
+from app.db.hash import hash_secret_key, is_valid_secret_key
+from app.schemas import PyObjectId, SecretCreate, SecretRetrive
 
-app = FastAPI()
+app = FastAPI(title=get_config().app_name)
 
 
 @app.post("/generate")
